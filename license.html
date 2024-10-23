@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown to HTML</title>
+</head>
+<body>
+  <div>This is a page for the MIT License</div>
+  <div id="content"></div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+  <script>
+    async function loadMarkdown() {
+      // Fetch the markdown file
+      const response = await fetch('LICENSE'); // Path to your markdown file
+      const markdownText = await response.text();
+
+      // Convert Markdown to HTML using Showdown
+      const converter = new showdown.Converter();
+      const html = converter.makeHtml(markdownText);
+
+      // Insert the converted HTML into the page
+      document.getElementById('content').innerHTML = html;
+    }
+
+    // Call the function to load and display the markdown content
+    loadMarkdown();
+  </script>
+</body>
+</html>
